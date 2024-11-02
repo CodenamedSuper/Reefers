@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reefers", "Reefers\Reefers.csproj", "{839EE42A-377E-48D1-8D0E-F3A6AE973784}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerpentEngine", "..\..\Engine\SerpentEngine\SerpentEngine\SerpentEngine\SerpentEngine.csproj", "{6ACC2B0C-2EB0-460C-BBE1-142918006D98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{839EE42A-377E-48D1-8D0E-F3A6AE973784}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{839EE42A-377E-48D1-8D0E-F3A6AE973784}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{839EE42A-377E-48D1-8D0E-F3A6AE973784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ACC2B0C-2EB0-460C-BBE1-142918006D98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ACC2B0C-2EB0-460C-BBE1-142918006D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ACC2B0C-2EB0-460C-BBE1-142918006D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ACC2B0C-2EB0-460C-BBE1-142918006D98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
