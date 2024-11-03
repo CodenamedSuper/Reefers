@@ -18,7 +18,7 @@ namespace Reefers
             GraphicsConfig.VSYNC = true;
             GraphicsConfig.FULLSCREEN = true;
             GraphicsConfig.FRAMERATE = 60;
-            IsMouseVisible = false;
+            IsMouseVisible = true;
             GraphicsConfig.Apply();
         }
 

@@ -13,6 +13,7 @@ public class Level : Scene
     public Level(string name) : base(name)
     {
         Camera.Zoom = 3f;
+        Camera.Position += new Vector2(200, 110);
     }
 
     public override void Begin()

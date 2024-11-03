@@ -20,8 +20,8 @@ public class Reefer : Tile
     public override void Load()
     {
 
-        Sprite sprite = new Sprite(ReeferRegistry.GetPath(AssetTypes.Image, Name));
-
+        Sprite sprite = new Sprite(ReeferRegistry.GetPath(Name, AssetTypes.Image));
+        AddComponent(sprite);
         base.Load();
     }
 

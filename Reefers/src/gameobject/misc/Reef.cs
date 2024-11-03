@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CastleGame;
+using Microsoft.Xna.Framework;
 using SerpentEngine;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,9 @@ namespace Reefers;
 public class Reef : GameObject
 {
     public TileSet SandTileSet { get; set; } = new TileSet();
-    public TileSet ReefersTileSet { get; set; } = new TileSet();
+
+    public List<TileSet> ReefersTileSets { get; set; } = new List<TileSet>();
+
 
     public TileGrid SandTileGrid { get; set; } = new TileGrid(new Vector2(28, 28));
     public TileGrid ReefersTileGrid { get; set; } = new TileGrid(new Vector2(28, 28));
@@ -25,34 +28,65 @@ public class Reef : GameObject
 
     public override void Load()
     {
-        Vector2 offset = new Vector2(-7, -4);
-
-        AddComponent(SandTileGrid);
-        AddComponent(ReefersTileGrid);
 
         SandTileSet.AddFromSprite("sand_1", "assets/img/misc/sand_1");
         SandTileSet.AddFromSprite("sand_2", "assets/img/misc/sand_2");
 
+        GenerateReeferTileSets();
+
+        foreach (TileSet tileSet in ReefersTileSets)
+        {
+            ReefersTileGrid.AddTileSet(tileSet);
+
+        }
+
+        AddComponent(SandTileGrid);
+        AddComponent(ReefersTileGrid);
+
+
         SandTileGrid.AddTileSet(SandTileSet);
 
+        PlaceSand();
+
+        ReefersTileGrid.PlaceTile(new Vector2(17 / 2, 10 / 2), ReeferRegistry.Brain().Name);
+
+
+        base.Load();
+    }
+
+    public void GenerateReeferTileSets()
+    {
+        ReefersTileGrid.Layer = 1;
+
+        int count = 0;
+        foreach (KeyValuePair<string, Func<Reefer>> refeer in ReeferRegistry.List)
+        {
+
+            ReefersTileSets.Add(new TileSet());
+            Reefer reefer = refeer.Value();
+            ReefersTileSets[count].Add(refeer.Key, refeer.Value);
+            count++;
+        }
+    }
+
+    public void PlaceSand()
+    {
         int length = (int)ReefSize.X * (int)ReefSize.Y;
         Vector2 coords = Vector2.Zero;
 
-        for(int i = 0; i < length; i++)
+        for (int i = 0; i < length; i++)
         {
-            if (i % 2 == 0) SandTileGrid.PlaceTile(coords + offset, "sand_1");
-            else SandTileGrid.PlaceTile(coords + offset, "sand_2");
+            if (i % 2 == 0) SandTileGrid.PlaceTile(coords, "sand_1");
+            else SandTileGrid.PlaceTile(coords, "sand_2");
 
             coords.X++;
-            if(coords.X == ReefSize.X)
+            if (coords.X == ReefSize.X)
             {
                 coords.X = 0;
                 coords.Y++;
             }
 
         }
-
-        base.Load();
     }
 
 }
