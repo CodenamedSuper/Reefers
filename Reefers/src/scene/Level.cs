@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CastleGame;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SerpentEngine;
 using System;
@@ -11,7 +12,7 @@ namespace Reefers;
 
 public class Level : Scene
 {
-    public static Cursor cursor { get; private set; }
+    public static Cursor Cursor { get; private set; }
 
     private RenderTarget2D cursorRenderTarget = new RenderTarget2D(SerpentGame.Instance.GraphicsDevice, GraphicsConfig.SCREEN_WIDTH, GraphicsConfig.SCREEN_HEIGHT);
 
@@ -34,17 +35,19 @@ public class Level : Scene
 
     public override void LoadContent()
     {
-        cursor = new Cursor();
-        cursor.Load();
+        Cursor = new Cursor();
+        Cursor.Load();
 
         Reef reef = new Reef(new Vector2(17, 10)); AddGameObject(reef);
 
         User user = new User(); AddGameObject(user);
+
+        ReeferStore reeferStore = new ReeferStore(); AddUIElement(reeferStore);
     }
 
     public override void Update()
     {
-        cursor.Update();
+        Cursor.Update();
 
         Camera.Position = Vector2.Clamp(Camera.Position, new Vector2(-1700, -1700), new Vector2(1700, 1700));
 
@@ -57,7 +60,7 @@ public class Level : Scene
         SerpentGame.Instance.GraphicsDevice.Clear(Color.Transparent);
 
         SerpentEngine.Draw.SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, Camera.Matrix);
-        cursor.Draw();
+        Cursor.Draw();
         SerpentEngine.Draw.SpriteBatch.End();
 
         SerpentGame.Instance.GraphicsDevice.SetRenderTarget(null);

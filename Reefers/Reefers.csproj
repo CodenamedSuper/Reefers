@@ -11,6 +11,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="assets\animation\reefers\brain.json" />
+    <None Remove="assets\animation\reefers\bubblefish.json" />
+    <None Remove="assets\img\ui\nineslice.png" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
   </ItemGroup>
@@ -24,8 +27,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\img\reefers\" />
-    <Folder Include="src\component\" />
     <Folder Include="src\gameobject\trasher\" />
+    <Folder Include="src\misc\" />
   </ItemGroup>
 	<ItemGroup>
 		<Content Include="assets\**\**\*.*">

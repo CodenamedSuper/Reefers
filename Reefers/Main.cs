@@ -18,6 +18,7 @@ namespace Reefers
             GraphicsConfig.VSYNC = true;
             GraphicsConfig.FULLSCREEN = true;
             GraphicsConfig.FRAMERATE = 60;
+            GraphicsConfig.BACKGROUND_COLOR = new Color(215, 158, 86);
             IsMouseVisible = true;
             GraphicsConfig.Apply();
         }
@@ -54,7 +55,9 @@ namespace Reefers
 
         protected override void Draw(GameTime gameTime)
         {
+
             base.Draw(gameTime);
+
         }
     }
 }

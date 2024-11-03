@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CastleGame;
+namespace Reefers;
 
 public class ReeferRegistry : Registry
 {
@@ -17,6 +17,7 @@ public class ReeferRegistry : Registry
 
     public static Func<Reefer> Brain = Register(() => new Reefer("brain", new Reefer.Settings()));
 
+    public static Func<Reefer> Bubblefish = Register(() => new Reefer("bubblefish", new Reefer.Settings()));
 
     public static Func<Reefer> Register(Func<Reefer> reefer)
     {
