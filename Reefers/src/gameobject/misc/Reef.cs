@@ -48,7 +48,7 @@ public class Reef : GameObject
 
         PlaceSand();
 
-        ReefersTileGrid.PlaceTile(new Vector2(17 / 2, 10 / 2), ReeferRegistry.Brain().Name);
+        ReefersTileGrid.PlaceTile(Vector2.Floor(new Vector2(ReefSize.X / 2, ReefSize.Y / 2)), ReeferRegistry.Brain().Name);
 
 
         base.Load();
