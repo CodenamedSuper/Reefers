@@ -15,8 +15,8 @@ namespace Reefers
         {
             GraphicsConfig.SCREEN_WIDTH = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             GraphicsConfig.SCREEN_HEIGHT = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            GraphicsConfig.FULLSCREEN = true;
             GraphicsConfig.VSYNC = true;
+            GraphicsConfig.FULLSCREEN = true;
             GraphicsConfig.FRAMERATE = 60;
             IsMouseVisible = false;
             GraphicsConfig.Apply();
@@ -34,11 +34,11 @@ namespace Reefers
 
 
             // Scene loading
-            Scene game = new Level("level");
+            Scene level = new Level("level");
 
-            SceneManager.AddScene(game);
+            SceneManager.AddScene(level);
 
-            SceneManager.SetCurrentScene(game);
+            SceneManager.SetCurrentScene(level);
 
             // Debug GUIs
             ImGuiDrawable debugGui = new DebugGui();

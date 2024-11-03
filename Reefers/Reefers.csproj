@@ -24,7 +24,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\img\reefer\" />
+    <Folder Include="src\component\" />
+    <Folder Include="src\gameobject\trasher\" />
   </ItemGroup>
+	<ItemGroup>
+		<Content Include="assets\**\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Engine\SerpentEngine\SerpentEngine\SerpentEngine\SerpentEngine.csproj" />
   </ItemGroup>

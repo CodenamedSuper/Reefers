@@ -1,4 +1,5 @@
-﻿using SerpentEngine;
+﻿using Microsoft.Xna.Framework;
+using SerpentEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ public class Level : Scene
 {
     public Level(string name) : base(name)
     {
+        Camera.Zoom = 3f;
     }
 
     public override void Begin()
@@ -23,5 +25,8 @@ public class Level : Scene
 
     public override void LoadContent()
     {
+        Reef reef = new Reef(new Vector2(17, 10));
+        AddGameObject(reef);
+
     }
 }
