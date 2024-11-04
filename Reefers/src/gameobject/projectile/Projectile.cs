@@ -33,6 +33,12 @@ public class Projectile : GameObject
     {
         Move(GetComponent<Direction>());
 
+
+        if(Position.X >= 17 * 28)
+        {
+            Remove();
+        }
+
         base.Update();
 
     }
@@ -42,7 +48,7 @@ public class Projectile : GameObject
         if(target is Trasher trasher)
         {
             trasher.GetComponent<Health>().Decrement(SETTINGS.Damage);
-            SceneManager.CurrentScene.Remove(this);
+            Remove();
         }
     }
 

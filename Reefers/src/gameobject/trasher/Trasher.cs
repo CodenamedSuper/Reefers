@@ -22,7 +22,7 @@ public class Trasher : GameObject
 
     public override void Load()
     {
-        Layer = 1;
+        Layer = 2;
 
         AnimationTree animationTree = CreateAndAddComponent<AnimationTree>();
         Direction direction = CreateAndAddComponent<Direction>();

@@ -26,13 +26,13 @@ public class Bubblefish : Reefer
 
     public void Shoot()
     {
-        // bubble = ProjectileRegistry.Bubble();
-        // bubble.Position = Position;
+        Projectile bubble = ProjectileRegistry.Bubble();
+        bubble.Position = Position;
 
-        //SceneManager.CurrentScene.AddGameObject(bubble);
+        SceneManager.CurrentScene.AddGameObject(bubble);
 
-        //bubble.CreateAndAddComponent<Direction>();
-        //bubble.GetComponent<Direction>().Set(GetComponent<Direction>().Facing);
+        bubble.CreateAndAddComponent<Direction>();
+        bubble.GetComponent<Direction>().Set(GetComponent<Direction>().Facing);
 
     }
 

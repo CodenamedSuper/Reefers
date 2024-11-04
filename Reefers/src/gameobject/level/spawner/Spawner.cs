@@ -18,7 +18,7 @@ public class Spawner : Tile
     public override void Load()
     {
         Random random = new Random();
-        Timer timer = new Timer(random.Next(4, 20));
+        Timer timer = new Timer(random.Next(4, 20)); AddComponent(timer);
         timer.Autostart = true;
         timer.Start();
         timer.OnTimeout += Spawn;
@@ -37,7 +37,7 @@ public class Spawner : Tile
     }
 
     public void Spawn()
-    {
+    { 
         Trasher trasher = TrasherRegistry.Drop();
         trasher.Position = Position;
         SceneManager.CurrentScene.AddGameObject(trasher);

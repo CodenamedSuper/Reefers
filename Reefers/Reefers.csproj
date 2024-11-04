@@ -13,6 +13,7 @@
   <ItemGroup>
     <None Remove="assets\animation\reefers\brain.json" />
     <None Remove="assets\animation\reefers\bubblefish.json" />
+    <None Remove="assets\animation\reefers\grab.json" />
     <None Remove="assets\animation\trashers\drop.json" />
     <None Remove="assets\img\trashers\drop.png" />
     <None Remove="assets\img\ui\nineslice.png" />
