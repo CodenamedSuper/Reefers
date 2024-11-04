@@ -17,6 +17,12 @@ public class Spawner : Tile
 
     public override void Load()
     {
+        Random random = new Random();
+        Timer timer = new Timer(random.Next(4, 20));
+        timer.Autostart = true;
+        timer.Start();
+        timer.OnTimeout += Spawn;
+
         base.Load();
     }
 
@@ -24,15 +30,15 @@ public class Spawner : Tile
     {
         if (spawned == false)
         {
-            Spawn(TrasherRegistry.Drop());
             spawned = true;
         }
 
         base.Update();
     }
 
-    public void Spawn(Trasher trasher)
+    public void Spawn()
     {
+        Trasher trasher = TrasherRegistry.Drop();
         trasher.Position = Position;
         SceneManager.CurrentScene.AddGameObject(trasher);
     }

@@ -44,7 +44,7 @@ public class User : GameObject
         Vector2 mousePos = VectorHelper.Snap(Level.Cursor.Position, 28);
         Vector2 mouseGridPos = reef.ReefersTileGrid.ConvertWorldCoordinatesToGridCoordinates(mousePos);
 
-        if (mouseGridPos.X >= 0 && mouseGridPos.Y >= 0 && mouseGridPos.X < reef.ReefSize.X && mouseGridPos.Y < reef.ReefSize.Y)
+        if ((mouseGridPos.X >= 0 && mouseGridPos.Y >= 0 && mouseGridPos.X < reef.ReefSize.X && mouseGridPos.Y < reef.ReefSize.Y) && !reef.ReefersTileGrid.Tiles.ContainsKey(mouseGridPos))
         {
             reef.ReefersTileGrid.PlaceTile(mouseGridPos, CurrentReefer.Name);
             reef.ReefersTileGrid.Tiles[mouseGridPos].GetComponent<Direction>().Set(GetComponent<Direction>().Facing);

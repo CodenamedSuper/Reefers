@@ -55,7 +55,8 @@ public class Reefer : Tile
 
     public virtual void OnDeath()
     {
-
+        Reef reef = SceneManager.CurrentScene.GetGameObject<Reef>();
+        reef.ReefersTileGrid.RemoveTile(reef.ReefersTileGrid.ConvertWorldCoordinatesToGridCoordinates(Position));
     }
 
     public class Settings

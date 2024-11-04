@@ -21,10 +21,13 @@ public class Projectile : GameObject
     {
         Layer = 4;
         Sprite sprite = new Sprite(ProjectileRegistry.GetPath(Name, AssetTypes.Image)); AddComponent(sprite);
-        Hitbox hitbox = new Hitbox(Position, new Vector2(28, 28)); AddComponent(hitbox);
+        Hitbox hitbox = new Hitbox(Position + new Vector2(2,2), new Vector2(16, 16)); AddComponent(hitbox);
+
+        hitbox.OnCollide += OnCollide; 
 
         base.Load();
     }
+
 
     public override void Update()
     {
@@ -32,6 +35,15 @@ public class Projectile : GameObject
 
         base.Update();
 
+    }
+
+    public void OnCollide(GameObject target)
+    {
+        if(target is Trasher trasher)
+        {
+            trasher.GetComponent<Health>().Decrement(SETTINGS.Damage);
+            SceneManager.CurrentScene.Remove(this);
+        }
     }
 
     public void Move(Direction direction)
@@ -65,9 +77,16 @@ public class Projectile : GameObject
     {
         public float Speed { get; set; } = 0;
 
+        public int Damage { get; set; } = 0;
         public Settings SetSpeed(float speed)
         {
             Speed = speed;
+            return this;
+        }
+
+        public Settings SetDamage(int damage)
+        {
+            Damage = damage;
             return this;
         }
     }

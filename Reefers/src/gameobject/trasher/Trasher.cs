@@ -26,7 +26,7 @@ public class Trasher : GameObject
 
         AnimationTree animationTree = CreateAndAddComponent<AnimationTree>();
         Direction direction = CreateAndAddComponent<Direction>();
-        Health health = new Health(SETTINGS.MaxHealth);
+        Health health = new Health(SETTINGS.MaxHealth); AddComponent(health);
         Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28)); AddComponent(hurtbox);
 
 
@@ -39,7 +39,7 @@ public class Trasher : GameObject
 
     public virtual void OnDeath()
     {
-
+        SceneManager.CurrentScene.Remove(this);
     }
 
     public override void Update()
