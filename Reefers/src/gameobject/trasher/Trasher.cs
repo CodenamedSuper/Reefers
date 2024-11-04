@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SerpentEngine;
 using System;
@@ -10,18 +9,20 @@ using System.Threading.Tasks;
 
 namespace Reefers;
 
-public class Reefer : Tile
+public class Trasher : GameObject
 {
 
     public Settings SETTINGS;
 
-    public Reefer(string name, Settings settings) : base(name)
+    public Trasher(string name, Settings settings)
     {
-        SETTINGS = new Settings();
+        Name = name;
+        SETTINGS = settings;
     }
 
     public override void Load()
     {
+        Layer = 1;
 
         AnimationTree animationTree = CreateAndAddComponent<AnimationTree>();
         Direction direction = CreateAndAddComponent<Direction>();
@@ -29,17 +30,23 @@ public class Reefer : Tile
         Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28)); AddComponent(hurtbox);
 
 
-        animationTree.AddAnimation(ReeferRegistry.GetPath(Name, AssetTypes.Animation), _ => true);
+        animationTree.AddAnimation(TrasherRegistry.GetPath(Name, AssetTypes.Animation), _ => true);
 
         health.OnHealthEmptied += OnDeath;
 
         base.Load();
     }
 
+    public virtual void OnDeath()
+    {
+
+    }
+
     public override void Update()
     {
 
         Direction direction = GetComponent<Direction>();
+        direction.Set(Direction.West().Facing);
 
         if (GetComponent<AnimationTree>().CurrentAnimation != null)
         {
@@ -50,22 +57,53 @@ public class Reefer : Tile
             if (direction.Facing == Direction.West().Facing) sprite.Effect = SpriteEffects.FlipHorizontally;
         }
 
+        Move(GetComponent<Direction>());
+
         base.Update();
     }
 
-    public virtual void OnDeath()
+    public void Move(Direction direction)
     {
+        if(direction.Facing == Direction.East().Facing)
+        {
+            Position = new Vector2(Position.X + SETTINGS.Speed, Position.Y);
+        }
+        if (direction.Facing == Direction.West().Facing)
+        {
+            DebugGui.Log(Position.ToString());
+            Position = new Vector2(Position.X - SETTINGS.Speed / 10, Position.Y);
 
+        }
+        if (direction.Facing == Direction.North().Facing)
+        {
+            Position = new Vector2(Position.X, Position.Y + SETTINGS.Speed);
+
+        }
+        if (direction.Facing == Direction.South().Facing)
+        {
+            Position = new Vector2(Position.X, Position.Y + SETTINGS.Speed);
+
+        }
     }
 
     public class Settings
     {
         public int MaxHealth { get; set; } = 0;
 
+        public float Speed { get; set; } = 0;
+
         public Settings SetMaxHealth(int maxHealth)
         {
             MaxHealth = maxHealth;
             return this;
         }
+
+        public Settings SetSpeed(float speed)
+        {
+            Speed = speed;
+            return this;
+        }
     }
+
+
 }

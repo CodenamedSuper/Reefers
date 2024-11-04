@@ -38,7 +38,7 @@ public class Level : Scene
         Cursor = new Cursor();
         Cursor.Load();
 
-        Reef reef = new Reef(new Vector2(17, 10)); AddGameObject(reef);
+        Reef reef = new Reef(new Vector2(17, 9)); AddGameObject(reef);
 
         User user = new User(); AddGameObject(user);
 

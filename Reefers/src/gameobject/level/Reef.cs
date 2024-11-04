@@ -15,9 +15,11 @@ public class Reef : GameObject
 
     public List<TileSet> ReefersTileSets { get; set; } = new List<TileSet>();
 
+    public TileSet SpawnerTileSet { get; set; } = new TileSet();
 
     public TileGrid SandTileGrid { get; set; } = new TileGrid(new Vector2(28, 28));
     public TileGrid ReefersTileGrid { get; set; } = new TileGrid(new Vector2(28, 28));
+    public TileGrid SpawnerTileGrid { get; set; } = new TileGrid(new Vector2(28, 28));
 
     public Vector2 ReefSize { get; set; } = Vector2.Zero;
 
@@ -32,6 +34,10 @@ public class Reef : GameObject
         SandTileSet.AddFromSprite("sand_1", "assets/img/misc/sand_1");
         SandTileSet.AddFromSprite("sand_2", "assets/img/misc/sand_2");
 
+        
+
+        SpawnerTileSet.Add("spawner", ()=> new Spawner());
+
         GenerateReeferTileSets();
 
         foreach (TileSet tileSet in ReefersTileSets)
@@ -42,14 +48,20 @@ public class Reef : GameObject
 
         AddComponent(SandTileGrid);
         AddComponent(ReefersTileGrid);
+        AddComponent(SpawnerTileGrid);
 
 
         SandTileGrid.AddTileSet(SandTileSet);
+        SpawnerTileGrid.AddTileSet(SpawnerTileSet);
 
         PlaceSand();
 
         ReefersTileGrid.PlaceTile(Vector2.Floor(new Vector2(ReefSize.X / 2, ReefSize.Y / 2)), ReeferRegistry.Brain().Name);
 
+        for(int i = 0; i < ReefSize.Y; i++)
+        {
+            SpawnerTileGrid.PlaceTile(new Vector2(ReefSize.X + 1, i), "spawner");
+        }
 
         base.Load();
     }

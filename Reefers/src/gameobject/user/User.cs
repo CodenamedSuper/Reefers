@@ -35,22 +35,6 @@ public class User : GameObject
 
         base.Update();
         if (Input.Mouse.LeftClick()) TryAndPlaceReefer();
-        if (Input.Mouse.RightClick())
-        {
-            Direction direction = GetComponent<Direction>();
-
-            if(direction.Facing == Direction.East().Facing)
-            {
-                direction.Set(Direction.West().Facing);
-                GetComponent<AnimationTree>().CurrentAnimation.SpriteSheet.CurrentSprite.Effect = SpriteEffects.FlipHorizontally;
-            }
-            else
-            {
-                direction.Set(Direction.East().Facing);
-                GetComponent<AnimationTree>().CurrentAnimation.SpriteSheet.CurrentSprite.Effect = SpriteEffects.None;
-
-            }
-        }
 
     }
 

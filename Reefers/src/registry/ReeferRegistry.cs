@@ -15,9 +15,9 @@ public class ReeferRegistry : Registry
     public static new string Path = "reefers/";
 
 
-    public static Func<Reefer> Brain = Register(() => new Reefer("brain", new Reefer.Settings()));
+    public static Func<Reefer> Brain = Register(() => new Brain("brain", new Reefer.Settings().SetMaxHealth(10)));
 
-    public static Func<Reefer> Bubblefish = Register(() => new Reefer("bubblefish", new Reefer.Settings()));
+    public static Func<Reefer> Bubblefish = Register(() => new Bubblefish("bubblefish", new Reefer.Settings().SetMaxHealth(5)));
 
     public static Func<Reefer> Register(Func<Reefer> reefer)
     {
