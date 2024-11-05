@@ -16,23 +16,9 @@ public class Bubblefish : Reefer
 
     public override void Load()
     {
-        Timer timer = new Timer(1); AddComponent(timer);
-        timer.Start();
-        timer.Autostart = true;
-        timer.OnTimeout += Shoot;
+        Shooter shooter = new Shooter(ProjectileRegistry.Bubble()); AddComponent(shooter);
 
         base.Load();
-    }
-
-    public void Shoot()
-    {
-        Projectile bubble = ProjectileRegistry.Bubble();
-        bubble.Position = Position;
-
-        SceneManager.CurrentScene.AddGameObject(bubble);
-
-        bubble.CreateAndAddComponent<Direction>();
-        bubble.GetComponent<Direction>().Set(GetComponent<Direction>().Facing);
 
     }
 

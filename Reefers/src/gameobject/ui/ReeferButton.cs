@@ -26,7 +26,7 @@ public class ReeferButton : GameObject
 
 
         AnimationTree animationTree = CreateAndAddComponent<AnimationTree>();
-        animationTree.AddAnimation(ReeferRegistry.GetPath(Reefer.Name, AssetTypes.Animation), _ => true);
+        animationTree.AddAnimation(ReeferRegistry.GetPath(Reefer.Name + "_idle", AssetTypes.Animation), _ => true);
 
 
         button.OnClick += OnClick;
@@ -37,7 +37,7 @@ public class ReeferButton : GameObject
     public void OnClick()
     {
         SceneManager.CurrentScene.GetGameObject<User>().CurrentReefer = Reefer;
-        SceneManager.CurrentScene.GetGameObject<User>().GetComponent<AnimationTree>().CurrentAnimation.SpriteSheet.CurrentSprite.ChangePath(ReeferRegistry.GetPath(Reefer.Name, AssetTypes.Image));
+        SceneManager.CurrentScene.GetGameObject<User>().GetComponent<AnimationTree>().CurrentAnimation.SpriteSheet.CurrentSprite.ChangePath(ReeferRegistry.GetPath(Reefer.Name + "_idle", AssetTypes.Image));
 
 
 

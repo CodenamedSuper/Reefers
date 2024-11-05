@@ -11,10 +11,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="assets\animation\reefers\brain.json" />
-    <None Remove="assets\animation\reefers\bubblefish.json" />
-    <None Remove="assets\animation\reefers\grab.json" />
+    <None Remove="assets\animation\reefers\brain_idle.json" />
+    <None Remove="assets\animation\reefers\bubblefish_idle.json" />
+    <None Remove="assets\animation\reefers\bubblefish_shoot.json" />
     <None Remove="assets\animation\trashers\drop.json" />
+    <None Remove="assets\img\reefers\bubblefish_shoot.png" />
     <None Remove="assets\img\trashers\drop.png" />
     <None Remove="assets\img\ui\nineslice.png" />
     <None Remove="Icon.ico" />
@@ -29,7 +30,6 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\img\reefers\" />
     <Folder Include="src\misc\" />
   </ItemGroup>
 	<ItemGroup>

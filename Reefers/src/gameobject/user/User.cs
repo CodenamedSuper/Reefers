@@ -18,7 +18,7 @@ public class User : GameObject
     {
         Layer = Level.Cursor.Layer;
         AnimationTree animationTree = CreateAndAddComponent<AnimationTree>();
-        animationTree.AddAnimation(ReeferRegistry.GetPath(CurrentReefer.Name, AssetTypes.Animation), _ => true);
+        animationTree.AddAnimation(ReeferRegistry.GetPath(CurrentReefer.Name +"_idle", AssetTypes.Animation), _ => true);
 
         Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.East().Facing);
 

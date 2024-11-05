@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Reefers;
 
-public class Detectionbox : Collision
+public class Detectbox : Collision
 {
-    public Detectionbox(Vector2 position, Vector2 dimensions) : base(position, dimensions)
+    public Detectbox(Vector2 position, Vector2 dimensions) : base(position, dimensions)
     {
     }
 }

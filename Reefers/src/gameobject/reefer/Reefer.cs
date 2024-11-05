@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SerpentEngine;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ public class Reefer : Tile
 
     public Settings SETTINGS;
 
+    private bool animationsRegistered = false;
+
     public Reefer(string name, Settings settings) : base(name)
     {
         SETTINGS = new Settings();
@@ -22,41 +25,38 @@ public class Reefer : Tile
 
     public override void Load()
     {
-
         AnimationTree animationTree = CreateAndAddComponent<AnimationTree>();
-        Direction direction = CreateAndAddComponent<Direction>();
-        Health health = new Health(SETTINGS.MaxHealth);
-        Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28)); AddComponent(hurtbox);
+        StateMachine stateMachine = CreateAndAddComponent<StateMachine>();
+        Health health = new Health(SETTINGS.MaxHealth); AddComponent(health);
+        Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28));
+        Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.East().Facing);
 
+        GameObjectState idleState = new GameObjectState("idle"); stateMachine.AddState(idleState);
 
-        animationTree.AddAnimation(ReeferRegistry.GetPath(Name, AssetTypes.Animation), _ => true);
+        stateMachine.SetState(idleState.Name);
 
-        health.OnHealthEmptied += OnDeath;
 
         base.Load();
     }
 
     public override void Update()
     {
-
-        Direction direction = GetComponent<Direction>();
-
-        if (GetComponent<AnimationTree>().CurrentAnimation != null)
-        {
-
-            Sprite sprite = GetComponent<AnimationTree>().CurrentAnimation.SpriteSheet.CurrentSprite;
-
-            if (direction.Facing == Direction.East().Facing) sprite.Effect = SpriteEffects.None;
-            if (direction.Facing == Direction.West().Facing) sprite.Effect = SpriteEffects.FlipHorizontally;
-        }
+        if (!animationsRegistered) RegisterAnimations();
 
         base.Update();
     }
 
-    public virtual void OnDeath()
+    public void RegisterAnimations()
     {
-        Reef reef = SceneManager.CurrentScene.GetGameObject<Reef>();
-        reef.ReefersTileGrid.RemoveTile(reef.ReefersTileGrid.ConvertWorldCoordinatesToGridCoordinates(Position));
+        AnimationTree animationTree = GetComponent<AnimationTree>();
+        StateMachine stateMachine = GetComponent<StateMachine>();
+
+        foreach (GameObjectState state in stateMachine.States.Values)
+        {
+            animationTree.AddAnimation(ReeferRegistry.GetPath(Name + "_" + state.Name, AssetTypes.Animation), _ => stateMachine.CurrentState.Name == state.Name);
+        }
+
+        animationsRegistered = true;
     }
 
     public class Settings

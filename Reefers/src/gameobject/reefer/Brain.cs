@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SerpentEngine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ public class Brain : Reefer
     {
     }
 
-    public override void OnDeath()
+    public override void Load()
     {
+        base.Load();
 
-        base.OnDeath();
+        CreateAndAddComponent<RestartOnDeath>();
+
     }
 }
