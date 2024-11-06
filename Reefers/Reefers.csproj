@@ -14,9 +14,11 @@
     <None Remove="assets\animation\reefers\brain_idle.json" />
     <None Remove="assets\animation\reefers\bubblefish_idle.json" />
     <None Remove="assets\animation\reefers\bubblefish_shoot.json" />
-    <None Remove="assets\animation\trashers\drop.json" />
+    <None Remove="assets\animation\trashers\drop_idle.json" />
+    <None Remove="assets\animation\trashers\drop_move.json" />
     <None Remove="assets\img\reefers\bubblefish_shoot.png" />
-    <None Remove="assets\img\trashers\drop.png" />
+    <None Remove="assets\img\trashers\drop_idle.png" />
+    <None Remove="assets\img\trashers\drop_move.png" />
     <None Remove="assets\img\ui\nineslice.png" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
@@ -34,11 +36,55 @@
   </ItemGroup>
 	<ItemGroup>
 		<Content Include="assets\**\**\*.*">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNeLeft</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Engine\SerpentEngine\SerpentEngine\SerpentEngine\SerpentEngine.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="assets\animation\reefers\brain_idle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\animation\reefers\bubblefish_idle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\animation\reefers\bubblefish_shoot.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\animation\trashers\drop_idle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\animation\trashers\drop_move.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\misc\sand_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\misc\sand_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\projectiles\bubble.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\reefers\brain_idle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\reefers\bubblefish_idle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\reefers\bubblefish_shoot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\reefers\grab_idle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\trashers\drop_move.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\ui\nineslice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

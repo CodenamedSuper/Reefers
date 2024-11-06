@@ -20,7 +20,7 @@ public class User : GameObject
         AnimationTree animationTree = CreateAndAddComponent<AnimationTree>();
         animationTree.AddAnimation(ReeferRegistry.GetPath(CurrentReefer.Name +"_idle", AssetTypes.Animation), _ => true);
 
-        Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.East().Facing);
+        Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.Right());
 
         base.Load();    
     }
@@ -47,7 +47,7 @@ public class User : GameObject
         if ((mouseGridPos.X >= 0 && mouseGridPos.Y >= 0 && mouseGridPos.X < reef.ReefSize.X && mouseGridPos.Y < reef.ReefSize.Y) && !reef.ReefersTileGrid.Tiles.ContainsKey(mouseGridPos))
         {
             reef.ReefersTileGrid.PlaceTile(mouseGridPos, CurrentReefer.Name);
-            reef.ReefersTileGrid.Tiles[mouseGridPos].GetComponent<Direction>().Set(GetComponent<Direction>().Facing);
+            reef.ReefersTileGrid.Tiles[mouseGridPos].GetComponent<Direction>().Set(GetComponent<Direction>());
         }
 
     }

@@ -1,4 +1,6 @@
-﻿using SerpentEngine;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using SerpentEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,72 +11,118 @@ namespace Reefers;
 
 public class Direction : Component
 {
-
     public string Facing { get; private set; }
 
     public Direction() : base(false)
     {
-        Facing = "none";
+        Facing = "left";
     }
-    public void Set(string direction)
+    public Direction(string facing) : base(false)
     {
-        Facing = direction;
+        Facing = facing;
+    }
+    public void Set(Direction direction)
+    {
+        Facing = direction.Facing;
+    }
+
+    public override void Update()
+    {
+
+        if (GameObject.HasComponent<AnimationTree>() && GetSibling<AnimationTree>().CurrentAnimation != null)
+        {
+            FlipSprite(GetSibling<AnimationTree>().CurrentAnimation.SpriteSheet.CurrentSprite);
+            return;
+        }
+        if (GameObject.HasComponent<Sprite>())
+        {
+            FlipSprite(GetSibling<Sprite>());
+            return;
+        }
+
+        base.Update();
+    }
+
+    public void FlipSprite(Sprite sprite)
+    {
+        if(this.Equals(Left())) sprite.Effect = SpriteEffects.FlipHorizontally;
+      
+        else if(this.Equals(Right())) sprite.Effect = SpriteEffects.None;
+    }
+
+    public bool Equals(Direction direction)
+    {
+        return direction.Facing == Facing;
     }
 
     public void Cycle()
     {
-        if(Facing == North().Facing)
+        if(Facing == Up().Facing)
         {
-            Facing = East().Facing;
+            Set(Right());
         }
-        else if (Facing == East().Facing)
+        else if (Facing == Right().Facing)
         {
-            Facing = South().Facing;
+            Set(Down());
         }
-        else if (Facing == South().Facing)
+        else if (Facing == Down().Facing)
         {
-            Facing = West().Facing;
+            Set(Left());
         }
-        else if (Facing == West().Facing)
+        else if (Facing == Left().Facing)
         {
-            Facing = North().Facing;
+            Set(Up());
         }
     }
 
-    public static Direction None()
+    public static Direction Up()
     {
-        Direction direction = new Direction();
-        direction.Set("none");
+        Direction direction = new Direction("up");
 
         return direction;
     }
-    public static Direction North()
+    public static Direction Left()
     {
-        Direction direction = new Direction();
-        direction.Set("north");
+        Direction direction = new Direction("left");
 
         return direction;
     }
-    public static Direction West()
+    public static Direction Down()
     {
-        Direction direction = new Direction();
-        direction.Set("west");
+        Direction direction = new Direction("down");
 
         return direction;
     }
-    public static Direction South()
+    public static Direction Right()
     {
-        Direction direction = new Direction();
-        direction.Set("soth");
+        Direction direction = new Direction("right");
 
         return direction;
     }
-    public static Direction East()
-    {
-        Direction direction = new Direction();
-        direction.Set("east");
 
-        return direction;
+    public static Vector2 GetVector2(Direction direction)
+    {
+        if (direction.Facing == Right().Facing)
+        {
+            return new Vector2(1, 0);
+        }
+        if (direction.Facing == Left().Facing)
+        {
+            return new Vector2(-1, 0);
+
+        }
+        if (direction.Facing == Up().Facing)
+        {
+            return new Vector2(0, -1);
+
+        }
+        if (direction.Facing == Down().Facing)
+        {
+            return new Vector2(0, 1);
+
+        }
+
+        return Vector2.Zero;
     }
 
 }

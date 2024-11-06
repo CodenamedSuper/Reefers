@@ -14,7 +14,7 @@ public class TrasherRegistry : Registry
 
     public static new string Path = "trashers/";
 
-    public static Func<Trasher> Drop = Register(() => new Trasher("drop", new Trasher.Settings().SetMaxHealth(6).SetSpeed(2f)));
+    public static Func<Trasher> Drop = Register(() => new Trasher("drop", new Trasher.Settings().SetMaxHealth(6).SetSpeed(0.5f)));
 
     public static Func<Trasher> Register(Func<Trasher> trasher)
     {

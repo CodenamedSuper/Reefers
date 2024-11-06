@@ -29,7 +29,7 @@ public class Reefer : Tile
         StateMachine stateMachine = CreateAndAddComponent<StateMachine>();
         Health health = new Health(SETTINGS.MaxHealth); AddComponent(health);
         Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28));
-        Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.East().Facing);
+        Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.Right());
 
         GameObjectState idleState = new GameObjectState("idle"); stateMachine.AddState(idleState);
 

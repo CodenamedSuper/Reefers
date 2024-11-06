@@ -20,6 +20,8 @@ public class Health : Component
     {
         MaxSize = size;
         Points = MaxSize;
+
+        OnHealthEmptied += Die;
     }
 
 
@@ -54,5 +56,10 @@ public class Health : Component
     public bool IsEmpty()
     {
         return Points <= 0;
+    }
+
+    public void Die()
+    {
+        GameObject.Remove();
     }
 }

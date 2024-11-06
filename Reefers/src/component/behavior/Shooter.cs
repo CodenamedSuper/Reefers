@@ -14,10 +14,22 @@ public class Shooter : Behavior
     public Projectile Projectile { get; set; }
     public Detectbox Detectbox { get; set; }
 
+    public float Interval { get; set; } = 1;
+
     public Shooter(Projectile projectile)
     {
         Projectile = projectile;
         StateName = "shoot";
+    }
+
+    public override void Initialize()
+    {
+        Timer timer = new Timer(Interval); SubComponents.AddComponent(timer);
+        timer.Autostart = true;
+        timer.OnTimeout += Shoot;
+        timer.Start();
+
+        base.Initialize();
     }
 
     public override void Update()
@@ -31,14 +43,13 @@ public class Shooter : Behavior
     {
         ChangeState();
 
-        Projectile projectile = Projectile;
+        Projectile projectile = ProjectileRegistry.List[Projectile.Name]();
         projectile.Position = GameObject.Position;
-
+        Debug.WriteLine(projectile.SETTINGS.Speed);
         SceneManager.CurrentScene.AddGameObject(projectile);
 
         projectile.CreateAndAddComponent<Direction>();
-        projectile.GetComponent<Direction>().Set(GetSibling<Direction>().Facing);
-        Debug.WriteLine("hello");
+        projectile.GetComponent<Direction>().Set(GetSibling<Direction>());
     }
 
 

@@ -11,6 +11,7 @@ namespace Reefers;
 
 public class Trasher : GameObject
 {
+    private bool animationsRegistered = false;
 
     public Settings SETTINGS;
 
@@ -25,65 +26,37 @@ public class Trasher : GameObject
         Layer = 2;
 
         AnimationTree animationTree = CreateAndAddComponent<AnimationTree>();
-        Direction direction = CreateAndAddComponent<Direction>();
+        StateMachine stateMachine = CreateAndAddComponent<StateMachine>();
+        Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.Left());
         Health health = new Health(SETTINGS.MaxHealth); AddComponent(health);
         Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28)); AddComponent(hurtbox);
+        Movement movement = CreateAndAddComponent<Movement>(); movement.Speed = SETTINGS.Speed;
 
+        GameObjectState idleState = new GameObjectState("idle"); stateMachine.AddState(idleState);
 
-        animationTree.AddAnimation(TrasherRegistry.GetPath(Name, AssetTypes.Animation), _ => true);
-
-        health.OnHealthEmptied += OnDeath;
+        stateMachine.SetState(idleState.Name);
 
         base.Load();
     }
 
-    public virtual void OnDeath()
-    {
-        SceneManager.CurrentScene.Remove(this);
-    }
-
     public override void Update()
     {
-
-        Direction direction = GetComponent<Direction>();
-        direction.Set(Direction.West().Facing);
-
-        if (GetComponent<AnimationTree>().CurrentAnimation != null)
-        {
-
-            Sprite sprite = GetComponent<AnimationTree>().CurrentAnimation.SpriteSheet.CurrentSprite;
-
-            if (direction.Facing == Direction.East().Facing) sprite.Effect = SpriteEffects.None;
-            if (direction.Facing == Direction.West().Facing) sprite.Effect = SpriteEffects.FlipHorizontally;
-        }
-
-        Move(GetComponent<Direction>());
+        if (!animationsRegistered) RegisterAnimations();
 
         base.Update();
     }
 
-    public void Move(Direction direction)
+    public void RegisterAnimations()
     {
-        if(direction.Facing == Direction.East().Facing)
-        {
-            Position = new Vector2(Position.X + SETTINGS.Speed, Position.Y);
-        }
-        if (direction.Facing == Direction.West().Facing)
-        {
-            DebugGui.Log(Position.ToString());
-            Position = new Vector2(Position.X - SETTINGS.Speed / 10, Position.Y);
+        AnimationTree animationTree = GetComponent<AnimationTree>();
+        StateMachine stateMachine = GetComponent<StateMachine>();
 
-        }
-        if (direction.Facing == Direction.North().Facing)
+        foreach (GameObjectState state in stateMachine.States.Values)
         {
-            Position = new Vector2(Position.X, Position.Y + SETTINGS.Speed);
-
+            animationTree.AddAnimation(TrasherRegistry.GetPath(Name + "_" + state.Name, AssetTypes.Animation), _ => stateMachine.CurrentState.Name == state.Name);
         }
-        if (direction.Facing == Direction.South().Facing)
-        {
-            Position = new Vector2(Position.X, Position.Y + SETTINGS.Speed);
 
-        }
+        animationsRegistered = true;
     }
 
     public class Settings
