@@ -27,6 +27,5 @@ public class RestartOnDeath : Component
 
     public void RestartLevel()
     {
-        Debug.WriteLine("restarted!");
     }
 }

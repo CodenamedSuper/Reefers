@@ -14,7 +14,7 @@ public class Attacker : Behavior
     public Vector2 AttackSize { get; set; } = new Vector2(28, 28);
     public int Damage { get; set; } = 1;
 
-    public float Interval = 1;
+    public float Interval { get; set; } = 1;
 
     public Attacker()
     {
@@ -26,10 +26,9 @@ public class Attacker : Behavior
         Direction = GetSibling<Direction>();
         Hitbox hitbox = GetSibling<Hitbox>();
 
-        Timer timer = new Timer(1);
+        Timer timer = new Timer(1); AddSubComponent(timer);
         timer.Autostart = true;
         timer.OnTimeout += Attack;
-        timer.Start();
 
         base.Initialize();
     }

@@ -27,7 +27,6 @@ public class Shooter : Behavior
         Timer timer = new Timer(Interval); AddSubComponent(timer);
         timer.Autostart = true;
         timer.OnTimeout += Shoot;
-        timer.Start();
 
         base.Initialize();
     }

@@ -1,4 +1,5 @@
-﻿using SerpentEngine;
+﻿using Microsoft.Xna.Framework;
+using SerpentEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ public class Health : Component
     {
         Points -= amount;
 
-        if (Points <= 0) Die();
+        if (Points <= 0) OnHealthEmptied.Invoke();
     }
 
     public void Increment()
@@ -56,12 +57,13 @@ public class Health : Component
 
     public void Die()
     {
-        GameObject.Remove();
 
         if(GameObject is Reefer)
         {
             Reef reef = SceneManager.CurrentScene.GetGameObject<Reef>();
-            reef.ReefersTileGrid.RemoveTile(reef.ReefersTileGrid.ConvertWorldCoordinatesToGridCoordinates(GameObject.Position));
+
+            Vector2 coords = reef.ReefersTileGrid.ConvertWorldCoordinatesToGridCoordinates(GameObject.Position);
+            reef.ReefersTileGrid.RemoveTile(coords);
         }
     }
 }

@@ -19,7 +19,14 @@ public class Bubblefish : Reefer
         Shooter shooter = new Shooter(ProjectileRegistry.Bubble()); AddComponent(shooter);
         shooter.Interval = 2f;
         base.Load();
+        
 
+    }
+
+    public override void Update()
+    {
+
+        base.Update();
     }
 
 
