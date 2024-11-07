@@ -28,7 +28,7 @@ public class Spawner : Behavior
         timer.Autostart = false;
         timer.OnTimeout += Spawn;
         timer.Start();
-        SubComponents.AddComponent(timer);
+        AddSubComponent(timer);
 
 
         base.Initialize();

@@ -12,14 +12,12 @@ public delegate void HealthEmptyEvent();
 public class Health : Component
 {
     public event HealthEmptyEvent OnHealthEmptied;
-
-
     public float Points { get; set; } = 0;
-    public float MaxSize { get; set; } = 0;
+    public float MaxPoints { get; set; } = 0;
     public Health(float size) : base(false)
     {
-        MaxSize = size;
-        Points = MaxSize;
+        MaxPoints = size;
+        Points = MaxPoints;
 
         OnHealthEmptied += Die;
     }
@@ -27,21 +25,19 @@ public class Health : Component
 
     public void Decrement()
     {
-        Points--;
-
-        if (Points <= 0) OnHealthEmptied.Invoke();
+        Decrement(1);
     }
 
     public void Decrement(float amount)
     {
         Points -= amount;
 
-        if (Points <= 0) OnHealthEmptied.Invoke();
+        if (Points <= 0) Die();
     }
 
     public void Increment()
     {
-        Points++;
+        Increment(1);
     }
     public void Increment(float amount)
     {
@@ -50,7 +46,7 @@ public class Health : Component
 
     public void SetFull()
     {
-        Points = MaxSize;
+        Points = MaxPoints;
     }
 
     public bool IsEmpty()
@@ -61,5 +57,11 @@ public class Health : Component
     public void Die()
     {
         GameObject.Remove();
+
+        if(GameObject is Reefer)
+        {
+            Reef reef = SceneManager.CurrentScene.GetGameObject<Reef>();
+            reef.ReefersTileGrid.RemoveTile(reef.ReefersTileGrid.ConvertWorldCoordinatesToGridCoordinates(GameObject.Position));
+        }
     }
 }

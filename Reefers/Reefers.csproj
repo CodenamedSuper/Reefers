@@ -14,6 +14,7 @@
     <None Remove="assets\animation\reefers\brain_idle.json" />
     <None Remove="assets\animation\reefers\bubblefish_idle.json" />
     <None Remove="assets\animation\reefers\bubblefish_shoot.json" />
+    <None Remove="assets\animation\trashers\drop_attack.json" />
     <None Remove="assets\animation\trashers\drop_idle.json" />
     <None Remove="assets\animation\trashers\drop_move.json" />
     <None Remove="assets\img\reefers\bubblefish_shoot.png" />
@@ -30,9 +31,6 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\misc\" />
   </ItemGroup>
 	<ItemGroup>
 		<Content Include="assets\**\**\*.*">
@@ -53,6 +51,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="assets\animation\trashers\drop_idle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\animation\trashers\drop_attack.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="assets\animation\trashers\drop_move.json">
@@ -77,6 +78,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="assets\img\reefers\grab_idle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\trashers\drop_attack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\trashers\drop_idle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="assets\img\trashers\drop_move.png">

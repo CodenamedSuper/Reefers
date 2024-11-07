@@ -20,7 +20,7 @@ public class Reefer : Tile
 
     public Reefer(string name, Settings settings) : base(name)
     {
-        SETTINGS = new Settings();
+        SETTINGS = settings;
     }
 
     public override void Load()
@@ -28,7 +28,8 @@ public class Reefer : Tile
         AnimationTree animationTree = CreateAndAddComponent<AnimationTree>();
         StateMachine stateMachine = CreateAndAddComponent<StateMachine>();
         Health health = new Health(SETTINGS.MaxHealth); AddComponent(health);
-        Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28));
+
+        Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28)); AddComponent(hurtbox);
         Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.Right());
 
         GameObjectState idleState = new GameObjectState("idle"); stateMachine.AddState(idleState);
@@ -57,6 +58,11 @@ public class Reefer : Tile
         }
 
         animationsRegistered = true;
+    }
+
+    public override void OnRemove()
+    {
+        base.OnRemove();
     }
 
     public class Settings

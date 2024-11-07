@@ -12,6 +12,8 @@ public class Movement : Behavior
     public float Speed { get; set; } = 1f;
     public Vector2 Velocity { get; set; } = Vector2.Zero;
 
+    public bool Moving = true;
+
     public Movement()
     {
         StateName = "move";
@@ -20,6 +22,8 @@ public class Movement : Behavior
     public override void Update()
     {
         base.Update();
+
+        if (!Moving) return;
 
         Move(GetSibling<Direction>());
 

@@ -21,6 +21,8 @@ namespace Reefers
             GraphicsConfig.BACKGROUND_COLOR = new Color(215, 158, 86);
             IsMouseVisible = true;
             GraphicsConfig.Apply();
+
+            DebugStates.ShowCollisionBoxes = false;
         }
 
         protected override void Initialize()
