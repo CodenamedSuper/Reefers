@@ -28,6 +28,17 @@ public class Projectile : GameObject
         base.Load();
     }
 
+    public override void Update()
+    {
+        Reef reef = SceneManager.CurrentScene.GetGameObject<Reef>();
+        if(Position.X > reef.ReefSize.X * 28)
+        {
+            Remove();
+        }
+
+        base.Update();
+    }
+
     public class Settings
     {
         public float Speed { get; set; } = 0;

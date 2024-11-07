@@ -45,7 +45,6 @@ public class Shooter : Behavior
 
         Projectile projectile = ProjectileRegistry.List[Projectile.Name]();
         projectile.Position = GameObject.Position;
-        Debug.WriteLine(projectile.SETTINGS.Speed);
         SceneManager.CurrentScene.AddGameObject(projectile);
 
         projectile.CreateAndAddComponent<Direction>();

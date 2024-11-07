@@ -36,7 +36,7 @@ public class Reef : GameObject
 
         
 
-        SpawnerTileSet.Add("spawner", ()=> new Spawner());
+        SpawnerTileSet.Add("spawner", ()=> new SpawnerTile());
 
         GenerateReeferTileSets();
 
