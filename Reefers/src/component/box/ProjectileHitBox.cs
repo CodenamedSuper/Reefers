@@ -21,10 +21,9 @@ public class ProjectileHitBox : Hitbox
         {
             Health health = trasher.GetComponent<Health>();
             health.Decrement(Damage);
+            GameObject.Remove();
+
         }
-
-        GameObject.Remove();
-
         base.OnCollision(target);
     }
 }

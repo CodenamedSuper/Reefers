@@ -15,11 +15,8 @@ public class SpawnerTile : Tile
 
     public override void Load()
     {
-
         Spawner spawner = new Spawner(TrasherRegistry.Drop); AddComponent(spawner); 
-        spawner.MaxInterval = 60;
-
-
+        spawner.MaxInterval = 5;
 
         base.Load();
     }

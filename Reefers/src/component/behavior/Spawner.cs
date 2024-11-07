@@ -25,7 +25,7 @@ public class Spawner : Behavior
         Random random = new Random();
 
         Timer timer = new Timer(random.Next(1, MaxInterval + 1));
-        timer.Autostart = true;
+        timer.Autostart = false;
         timer.OnTimeout += Spawn;
         timer.Start();
         SubComponents.AddComponent(timer);
@@ -44,6 +44,12 @@ public class Spawner : Behavior
         SceneManager.CurrentScene.AddGameObject(gameObject);
 
         Random random = new Random();
+
+        Timer timer = SubComponents.GetComponent<Timer>();
+        timer = new Timer(random.Next(1, MaxInterval + 1));
+        timer.Autostart = false;
+        timer.OnTimeout += Spawn;
+        timer.Start();
     }
 
 
