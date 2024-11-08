@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Reefers;
 
-public class Reefer : Tile
+public abstract class Reefer : Tile
 {
 
     public Settings SETTINGS;

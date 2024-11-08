@@ -8,22 +8,17 @@ using System.Threading.Tasks;
 
 namespace Reefers;
 
-public class Projectile : GameObject
+public abstract class Projectile : GameObject
 {
-    public Settings SETTINGS { get; set; }
-    public Projectile(string name, Settings settings)
+    public Projectile(string name)
     {
         Name = name;
-        SETTINGS = settings;
     }
 
     public override void Load()
     {
         Layer = 4;
         Sprite sprite = new Sprite(ProjectileRegistry.GetPath(Name, AssetTypes.Image)); AddComponent(sprite);
-        Hitbox hitbox = new Hitbox(Position + new Vector2(2,2), new Vector2(16, 16), GameObjectTypes.Trasher); AddComponent(hitbox); hitbox.DestroyOnCollision = true;
-        Movement movement = CreateAndAddComponent<Movement>(); movement.Speed = SETTINGS.Speed;
-        
 
         base.Load();
     }
@@ -37,24 +32,6 @@ public class Projectile : GameObject
         }
 
         base.Update();
-    }
-
-    public class Settings
-    {
-        public float Speed { get; set; } = 0;
-
-        public int Damage { get; set; } = 0;
-        public Settings SetSpeed(float speed)
-        {
-            Speed = speed;
-            return this;
-        }
-
-        public Settings SetDamage(int damage)
-        {
-            Damage = damage;
-            return this;
-        }
     }
 
 

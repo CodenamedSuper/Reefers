@@ -56,6 +56,7 @@ public class Level : Scene
         base.Update();
     }
 
+
     public override void Draw()
     {
         SerpentGame.Instance.GraphicsDevice.SetRenderTarget(cursorRenderTarget);

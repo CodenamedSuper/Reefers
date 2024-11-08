@@ -27,5 +27,6 @@ public class RestartOnDeath : Component
 
     public void RestartLevel()
     {
+        Main.SceneManager.SetCurrentScene(new Level("level"));
     }
 }

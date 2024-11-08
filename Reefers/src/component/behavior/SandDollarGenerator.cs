@@ -35,6 +35,10 @@ public class SandDollarGenerator : Behavior
 
         userStats.SandDollars += Amount;
 
+        Projectile projectile = ProjectileRegistry.SandDollar();
+        projectile.Position = GameObject.Position;
+        SceneManager.CurrentScene.AddGameObject(projectile);
+
         ChangeState();
     }
 

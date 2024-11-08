@@ -17,7 +17,7 @@ public class Flinder : Reefer
         base.Load();
 
         SandDollarGenerator sandDollarGenerator = CreateAndAddComponent<SandDollarGenerator>(); 
-        sandDollarGenerator.Interval = 10;
+        sandDollarGenerator.Interval = 5;
 
     }
 }

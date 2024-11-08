@@ -16,7 +16,10 @@ public class ProjectileRegistry : Registry
     public static new string Path = "projectiles/";
 
 
-    public static Func<Projectile> Bubble = Register(() => new Projectile("bubble", new Projectile.Settings().SetSpeed(1).SetDamage(1)));
+    public static Func<Projectile> Bubble = Register(() => new Bubble("bubble"));
+
+    public static Func<Projectile> SandDollar = Register(() => new SandDollar("sand_dollar"));
+
 
     public static Func<Projectile> Register(Func<Projectile> bubble)
     {
