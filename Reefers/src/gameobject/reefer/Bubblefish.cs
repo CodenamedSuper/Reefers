@@ -23,11 +23,5 @@ public class Bubblefish : Reefer
 
     }
 
-    public override void Update()
-    {
-
-        base.Update();
-    }
-
 
 }

@@ -1,0 +1,9 @@
+{
+  "spritesheet": "assets/img/reefers/flinder_idle",
+  "frame_size": {
+    "width": 28,
+    "height": 28
+  },
+  "frame_length": 0.1,
+  "loop": true
+}

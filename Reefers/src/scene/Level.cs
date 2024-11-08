@@ -42,6 +42,8 @@ public class Level : Scene
 
         User user = new User(); AddGameObject(user);
 
+        StatsUi statsUi = new StatsUi(); AddUIElement(statsUi);
+
         ReeferStore reeferStore = new ReeferStore(); AddUIElement(reeferStore);
     }
 

@@ -13,7 +13,10 @@
   <ItemGroup>
     <None Remove="assets\animation\reefers\brain_idle.json" />
     <None Remove="assets\animation\reefers\bubblefish_idle.json" />
+    <None Remove="assets\animation\reefers\bubblefish_move.json" />
     <None Remove="assets\animation\reefers\bubblefish_shoot.json" />
+    <None Remove="assets\animation\reefers\flinder_generate.json" />
+    <None Remove="assets\animation\reefers\flinder_idle.json" />
     <None Remove="assets\animation\trashers\drop_attack.json" />
     <None Remove="assets\animation\trashers\drop_idle.json" />
     <None Remove="assets\animation\trashers\drop_move.json" />
@@ -37,6 +40,12 @@
 			<CopyToOutputDirectory>PreserveNeLeft</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="bin\Debug\net8.0\Content\assets\font\PeaberryBase.ttf" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="bin\Debug\net8.0\Content\assets\font\peaberry.xnb" />
+	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Engine\SerpentEngine\SerpentEngine\SerpentEngine\SerpentEngine.csproj" />
   </ItemGroup>
@@ -44,7 +53,16 @@
     <Content Update="assets\animation\reefers\brain_idle.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="assets\animation\reefers\flinder_generate.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\animation\reefers\flinder_idle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="assets\animation\reefers\bubblefish_idle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\animation\reefers\bubblefish_move.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="assets\animation\reefers\bubblefish_shoot.json">
@@ -57,6 +75,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="assets\animation\trashers\drop_move.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\font\peaberry.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="assets\img\misc\sand_1.png">
@@ -75,6 +96,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="assets\img\reefers\bubblefish_shoot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\reefers\flinder_generate.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="assets\img\reefers\flinder_idle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="assets\img\reefers\grab_idle.png">

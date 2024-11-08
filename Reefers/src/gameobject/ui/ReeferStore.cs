@@ -30,6 +30,9 @@ public class ReeferStore : GameObject
         foreach(KeyValuePair<string, Func<Reefer>> entry in ReeferRegistry.List)
         {
             Reefer reefer = entry.Value();
+
+            if (reefer.Name == ReeferRegistry.Brain().Name) continue;
+
             reefer.Load();
 
             UiElementGroup group = new UiElementGroup(new ReeferButton(reefer));

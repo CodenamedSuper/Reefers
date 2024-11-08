@@ -18,6 +18,8 @@ public class ReeferRegistry : Registry
 
     public static Func<Reefer> Bubblefish = Register(() => new Bubblefish("bubblefish", new Reefer.Settings().SetMaxHealth(5)));
 
+    public static Func<Reefer> Flinder = Register(() => new Flinder("flinder", new Reefer.Settings().SetMaxHealth(3)));
+
     public static Func<Reefer> Register(Func<Reefer> reefer)
     {
         List.Add(reefer().Name, reefer);

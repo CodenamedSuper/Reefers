@@ -24,7 +24,7 @@ public class Shooter : Behavior
 
     public override void Initialize()
     {
-        Timer timer = new Timer(3); AddSubComponent(timer);
+        Timer timer = new Timer(Interval); AddSubComponent(timer);
         timer.Autostart = true;
         timer.OnTimeout += Shoot;
 
