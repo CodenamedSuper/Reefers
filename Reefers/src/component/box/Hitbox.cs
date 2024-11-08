@@ -8,16 +8,49 @@ using System.Threading.Tasks;
 
 namespace Reefers;
 
+public delegate void HitEvent(Hurtbox targetHurtbox);
+
 public class Hitbox : Collision
 {
+    public event HitEvent OnHit;
+
     public int Damage { get; set; } = 1;
-    public Hitbox(Vector2 position, Vector2 dimensions) : base(position, dimensions)
+
+    public bool DestroyOnCollision = false;
+
+    public string TargetType { get; set; } = "all";
+    public Hitbox(Vector2 position, Vector2 dimensions, string targetType) : base(position, dimensions)
     {
-        OnCollide += OnCollision;
+        TargetType = targetType;
+        OnHit += Hit;
+    }
+    protected override void CheckCollision()
+    {
+        if (!Enabled) return;
+
+        foreach (GameObject target in SceneManager.CurrentScene.GetGameObjects())
+        {
+            if (!target.HasComponent<Hurtbox>()) continue;
+
+            if (GameObject == target) continue;
+
+            Hurtbox targetHurtbox = target.GetComponent<Hurtbox>();
+
+            if (Box.Intersects(targetHurtbox.Box) && (TargetType.Equals(targetHurtbox.Type) || TargetType.Equals("all")))
+            {
+                CollidingGameObject = target;
+                OnHit?.Invoke(targetHurtbox);
+                break;
+            }
+        }
     }
 
-    public virtual void OnCollision(GameObject target)
+    public void Hit(Hurtbox targetHurtox)
     {
-    } 
+        targetHurtox.Health.Decrement(Damage);
+        Enabled = false;
+
+        if (DestroyOnCollision) GameObject.Remove();
+    }
 
 }

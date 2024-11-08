@@ -10,7 +10,19 @@ namespace Reefers;
 
 public class Hurtbox : Collision
 {
-    public Hurtbox(Vector2 position, Vector2 dimensions) : base(position, dimensions)
+    public Health Health { get; set; }
+
+    public string Type { get; set; } = "";
+    public Hurtbox(Vector2 position, Vector2 dimensions, string type) : base(position, dimensions)
     {
+        Type = type;
+    }
+
+    public override void Initialize()
+    {
+        Health = GetSibling<Health>();
+
+
+        base.Initialize();
     }
 }

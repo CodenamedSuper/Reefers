@@ -65,5 +65,7 @@ public class Health : Component
             Vector2 coords = reef.ReefersTileGrid.ConvertWorldCoordinatesToGridCoordinates(GameObject.Position);
             reef.ReefersTileGrid.RemoveTile(coords);
         }
+
+        GameObject.Remove();
     }
 }
