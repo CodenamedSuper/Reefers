@@ -29,10 +29,15 @@ public class Trasher : GameObject
         StateMachine stateMachine = CreateAndAddComponent<StateMachine>();
         Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.Left());
         Health health = new Health(SETTINGS.MaxHealth); AddComponent(health);
-        Hitbox hitbox = new Hitbox(Position, new Vector2(28, 28)); AddComponent(hitbox);
-        Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28)); AddComponent(hurtbox);
+        Colliderbox colliderbox = new Colliderbox(Position, new Vector2(28, 28), GameObjectTypes.Trasher, GameObjectTypes.Reefer); AddComponent(colliderbox);
+        Hitbox hitbox = new Hitbox(Position, new Vector2(28, 28), GameObjectTypes.Reefer); AddComponent(hitbox);
+        Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28), GameObjectTypes.Trasher); AddComponent(hurtbox);
         Movement movement = CreateAndAddComponent<Movement>(); movement.Speed = SETTINGS.Speed;
-        Attacker attacker = CreateAndAddComponent<Attacker>(); attacker.Damage = 1; 
+        Attacker attacker = CreateAndAddComponent<Attacker>();
+        attacker.Damage = 1;
+        attacker.AttackOffset = new Vector2(28, 28);
+        attacker.TargetType = GameObjectTypes.Reefer;
+        attacker.Interval = 2;
 
         GameObjectState idleState = new GameObjectState("idle"); stateMachine.AddState(idleState);
 

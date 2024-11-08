@@ -21,7 +21,7 @@ public class Projectile : GameObject
     {
         Layer = 4;
         Sprite sprite = new Sprite(ProjectileRegistry.GetPath(Name, AssetTypes.Image)); AddComponent(sprite);
-        ProjectileHitBox hitbox = new ProjectileHitBox(Position + new Vector2(2,2), new Vector2(16, 16)); AddComponent(hitbox);
+        Hitbox hitbox = new Hitbox(Position + new Vector2(2,2), new Vector2(16, 16), GameObjectTypes.Trasher); AddComponent(hitbox); hitbox.DestroyOnCollision = true;
         Movement movement = CreateAndAddComponent<Movement>(); movement.Speed = SETTINGS.Speed;
         
 

@@ -22,7 +22,7 @@ namespace Reefers
             IsMouseVisible = true;
             GraphicsConfig.Apply();
 
-            DebugStates.ShowCollisionBoxes = false;
+            DebugStates.ShowCollisionBoxes = true;
         }
 
         protected override void Initialize()

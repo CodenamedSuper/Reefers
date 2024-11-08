@@ -12,7 +12,11 @@ public class Attacker : Behavior
 {
     public Direction Direction { get; set; }
     public Vector2 AttackSize { get; set; } = new Vector2(28, 28);
+
+    public Vector2 AttackOffset { get; set; } = Vector2.Zero;
     public int Damage { get; set; } = 1;
+
+    public string TargetType{ get; set; } = GameObjectTypes.All;
 
     public float Interval { get; set; } = 1;
 
@@ -26,43 +30,21 @@ public class Attacker : Behavior
         Direction = GetSibling<Direction>();
         Hitbox hitbox = GetSibling<Hitbox>();
 
-        Timer timer = new Timer(1); AddSubComponent(timer);
+        hitbox = new Hitbox(GameObject.Position, AttackSize, TargetType);
+        hitbox.Offset = AttackOffset * Direction.GetVector2(Direction);
+        hitbox.Damage = Damage;
+
+        Timer timer = new Timer(Interval); AddSubComponent(timer);
         timer.Autostart = true;
         timer.OnTimeout += Attack;
 
         base.Initialize();
     }
-
-    public override void Update()
-    {
-
-        if (GetSibling<Movement>() == null && GetSibling<Hitbox>() == null) return;
-
-        Hitbox hitbox = GetSibling<Hitbox>();
-        Movement movement = GetSibling<Movement>();
-        movement.Velocity = Vector2.Zero;
-
-        if (!movement.Moving && hitbox.CollidingGameObject == null) movement.Moving = true;
-
-        else if(hitbox.CollidingGameObject != null) movement.Moving = false;
-
-        base.Update();
-    }
-
     public void Attack()
     {
+        ChangeState();
+
         Hitbox hitbox = GetSibling<Hitbox>();
-
-        if (hitbox.CollidingGameObject == null) return;
-
-        GameObject target = hitbox.CollidingGameObject;
-
-        if (target.HasComponent<Hurtbox>() && target.HasComponent<Health>())
-        {
-            target.GetComponent<Health>().Decrement(Damage);
-
-            ChangeState();
-        }
-
+        hitbox.Enabled = true;
     }
 }

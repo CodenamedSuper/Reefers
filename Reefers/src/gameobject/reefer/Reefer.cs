@@ -28,8 +28,8 @@ public class Reefer : Tile
         AnimationTree animationTree = CreateAndAddComponent<AnimationTree>();
         StateMachine stateMachine = CreateAndAddComponent<StateMachine>();
         Health health = new Health(SETTINGS.MaxHealth); AddComponent(health);
-
-        Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28)); AddComponent(hurtbox);
+        Hurtbox hurtbox = new Hurtbox(Position, new Vector2(28, 28), GameObjectTypes.Reefer); AddComponent(hurtbox);
+        Colliderbox colliderbox = new Colliderbox(Position, new Vector2(28, 28), GameObjectTypes.Reefer, GameObjectTypes.Trasher); AddComponent(colliderbox);
         Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.Right());
 
         GameObjectState idleState = new GameObjectState("idle"); stateMachine.AddState(idleState);
