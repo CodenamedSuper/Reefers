@@ -12,6 +12,7 @@ namespace Reefers;
 public class Direction : Component
 {
     public string Facing { get; private set; }
+    // The direction the component is facing.
 
     public Direction() : base(false)
     {
@@ -25,6 +26,7 @@ public class Direction : Component
     {
         Facing = direction.Facing;
     }
+    //Sets the direction
 
     public override void Update()
     {
@@ -49,11 +51,13 @@ public class Direction : Component
       
         else if(this.Equals(Right())) sprite.Effect = SpriteEffects.None;
     }
+    //Flips the sprite based on the direction.
 
     public bool Equals(Direction direction)
     {
         return direction.Facing == Facing;
     }
+    //Compares 2 directions.
 
     public void Cycle()
     {
@@ -74,6 +78,7 @@ public class Direction : Component
             Set(Up());
         }
     }
+    //Cycles the direction clockwise.
 
     public static Direction Up()
     {
@@ -81,24 +86,30 @@ public class Direction : Component
 
         return direction;
     }
+    //Up direction
     public static Direction Left()
     {
         Direction direction = new Direction("left");
 
         return direction;
     }
+    //Left direction
+
     public static Direction Down()
     {
         Direction direction = new Direction("down");
 
         return direction;
     }
+    //Down direction
+
     public static Direction Right()
     {
         Direction direction = new Direction("right");
 
         return direction;
     }
+    //Right direction
 
     public static Vector2 GetVector2(Direction direction)
     {
@@ -124,5 +135,7 @@ public class Direction : Component
 
         return Vector2.Zero;
     }
+    //Returns a Vector2 that matches the direction.
 
 }
+// A component for storing a direction.
