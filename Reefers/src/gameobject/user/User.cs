@@ -19,6 +19,10 @@ public class User : GameObject
         Layer = Level.Cursor.Layer;
         AnimationTree animationTree = CreateAndAddComponent<AnimationTree>();
         UserStats userStats = new UserStats(); AddComponent(userStats);
+        SandDollarGenerator sandDollarGenerator = CreateAndAddComponent<SandDollarGenerator>();
+        sandDollarGenerator.Amount = 1;
+        sandDollarGenerator.ShowDolllarPopUp = false;
+        sandDollarGenerator.Interval = 5;
         animationTree.AddAnimation(ReeferRegistry.GetPath(CurrentReefer.Name +"_idle", AssetTypes.Animation), _ => true);
 
         Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.Right());

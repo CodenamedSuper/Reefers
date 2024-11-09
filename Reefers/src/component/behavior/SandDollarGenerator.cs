@@ -12,7 +12,9 @@ public class SandDollarGenerator : Behavior
 
     public int Amount { get; set; } = 1;
 
-    public float Interval = 10f;
+    public float Interval { get; set; } = 10f;
+
+    public bool ShowDolllarPopUp { get; set; } = true;
 
     public SandDollarGenerator()
     {
@@ -31,15 +33,18 @@ public class SandDollarGenerator : Behavior
 
     public void Generate()
     {
+        ChangeState();
+
         UserStats userStats = SceneManager.CurrentScene.GetGameObject<User>().GetComponent<UserStats>();
 
         userStats.SandDollars += Amount;
+
+        if (!ShowDolllarPopUp) return;
 
         Projectile projectile = ProjectileRegistry.SandDollar();
         projectile.Position = GameObject.Position;
         SceneManager.CurrentScene.AddGameObject(projectile);
 
-        ChangeState();
     }
 
 }

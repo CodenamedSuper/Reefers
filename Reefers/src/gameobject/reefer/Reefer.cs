@@ -69,10 +69,20 @@ public abstract class Reefer : Tile
     {
         public int MaxHealth { get; set; } = 0;
 
+        public int Price { get; set; } = 0;
+
         public Settings SetMaxHealth(int maxHealth)
         {
             MaxHealth = maxHealth;
             return this;
         }
+
+        public Settings SetPrice(int price)
+        {
+            Price = price;
+            return this;
+        }
+
+
     }
 }
