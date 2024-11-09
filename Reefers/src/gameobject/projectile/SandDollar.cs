@@ -16,7 +16,7 @@ public class SandDollar : Projectile
     {
         base.Load();
 
-        Fading fading = CreateAndAddComponent<Fading>(); fading.Amount = 10;
+        Fading fading = CreateAndAddComponent<Fading>(); 
         Direction direction = CreateAndAddComponent<Direction>(); direction.Set(Direction.Up());
         Movement movement = CreateAndAddComponent<Movement>(); movement.Speed = 0.5f;
     }

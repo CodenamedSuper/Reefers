@@ -9,7 +9,6 @@ namespace Reefers;
 
 public class Spawner : Behavior
 {
-
     public Func<GameObject> PoolGameObject { get; set; } = () => new GameObject();
 
     public int MaxInterval { get; set; } = 1;

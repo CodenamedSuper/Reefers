@@ -12,7 +12,9 @@ public class Fading : Component
 {
     public Sprite Sprite { get; set; }
 
-    public int Amount = 1;
+    public float Modifier = 0.02f;
+
+    private float opacity = 1;
 
     public Fading() : base(false)
     {
@@ -27,9 +29,11 @@ public class Fading : Component
 
     public override void Update()
     {
-        Sprite.Color = new Color(Sprite.Color.R, Sprite.Color.G, Sprite.Color.B, Sprite.Color.A - Amount);
+        opacity -= Modifier;
+        Sprite.Color = Color.White * opacity;
 
-        if(Sprite.Color.A <= 0) GameObject.Remove();
+        if(Sprite.Color.R <= 0) GameObject.Remove();
+
 
         base.Update();
     }

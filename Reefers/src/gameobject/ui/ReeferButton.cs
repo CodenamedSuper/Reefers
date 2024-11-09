@@ -56,10 +56,8 @@ public class ReeferButton : GameObject
 
     public override void Update()
     {
-
         if (GetComponent<AnimationTree>().CurrentAnimation != null)
         {
-
             Sprite sprite = GetComponent<AnimationTree>().CurrentAnimation.SpriteSheet.CurrentSprite;
             User user = SceneManager.CurrentScene.GetGameObject<User>();
             UserStats userStats = user.GetComponent<UserStats>();
@@ -67,7 +65,7 @@ public class ReeferButton : GameObject
             int alphaModifier = 150;
 
             if (userStats.SandDollars < Reefer.SETTINGS.Price) sprite.Color = new Color(sprite.Color.R, sprite.Color.G, sprite.Color.B, alphaModifier);
-            else sprite.Color = new Color(sprite.Color.R, sprite.Color.G, sprite.Color.B, 255f);
+            else sprite.Color = Color.White * 0.5f;
 
         }
         base.Update();
