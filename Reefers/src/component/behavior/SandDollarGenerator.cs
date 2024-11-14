@@ -9,11 +9,8 @@ namespace Reefers;
 
 public class SandDollarGenerator : Behavior
 {
-
     public int Amount { get; set; } = 1;
-
     public float Interval { get; set; } = 10f;
-
     public bool ShowDolllarPopUp { get; set; } = true;
 
     public SandDollarGenerator()

@@ -35,7 +35,22 @@ public class ReeferStore : GameObject
 
             reefer.Load();
 
-            UiElementGroup group = new UiElementGroup(new ReeferButton(reefer));
+            ReeferButton reeferButton = new ReeferButton(reefer);
+            reeferButton.Layer = 70;
+            UiElementGroup group = new UiElementGroup(reeferButton);
+
+            //Text nameText = new Text("assets/font/peaberry", reefer.Name);
+            // nameText.Scale = 0.7f;
+            // GameObject nameUiElement = new GameObject(); nameUiElement.AddComponent(nameText);
+            // nameUiElement.Layer = 80;
+
+            // Text priceText = new Text("assets/font/peaberry", reefer.SETTINGS.Price.ToString());
+            // priceText.Scale = 0.7f;
+            // GameObject priceUiElement = new GameObject(); priceUiElement.AddComponent(priceText);
+            // priceUiElement.Layer = 100;
+
+            // group.AddChild(nameUiElement, new Vector2(10,10));
+            // group.AddChild(priceUiElement, new Vector2(10, 20));
 
             uiGrid.AddUiElementGroup(group);
 

@@ -10,9 +10,9 @@ namespace Reefers;
 
 public class Shooter : Behavior
 {
-   
     public Projectile Projectile { get; set; }
     public Detectbox Detectbox { get; set; }
+
 
     public float Interval { get; set; } = 1;
 

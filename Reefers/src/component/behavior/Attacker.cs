@@ -12,12 +12,9 @@ public class Attacker : Behavior
 {
     public Direction Direction { get; set; }
     public Vector2 AttackSize { get; set; } = new Vector2(28, 28);
-
     public Vector2 AttackOffset { get; set; } = Vector2.Zero;
     public int Damage { get; set; } = 1;
-
-    public string TargetType{ get; set; } = GameObjectTypes.All;
-
+    public string TargetType { get; set; } = GameObjectTypes.All;
     public float Interval { get; set; } = 1;
 
     public Attacker()
