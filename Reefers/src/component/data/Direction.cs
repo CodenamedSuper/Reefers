@@ -137,5 +137,28 @@ public class Direction : Component
     }
     //Returns a Vector2 that matches the direction.
 
+    public static Direction GetRelativeDirection(Vector2 body, Vector2 target)
+    {
+        if(target.X < body.X)
+        {
+            return Left();
+        }
+        if(target.X > body.X)
+        {
+            return Right();
+        }
+        if (target.Y < body.Y)
+        {
+            return Down();
+        }
+        if (target.Y > body.Y)
+        {
+            return Up();
+        }
+
+        return new Direction();
+    }
+    // Returns a direction of 2 relative Vector2 parameters.
+
 }
 // A component for storing a direction.

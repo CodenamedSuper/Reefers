@@ -40,6 +40,7 @@ public class User : GameObject
 
         base.Update();
         if (Input.Mouse.LeftClick()) TryAndPlaceReefer();
+        if (Input.Mouse.RightClick()) GetComponent<Direction>().Cycle();
 
     }
 

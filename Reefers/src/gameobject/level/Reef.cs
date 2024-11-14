@@ -60,7 +60,7 @@ public class Reef : GameObject
 
         for(int i = 0; i < ReefSize.Y; i++)
         {
-            SpawnerTileGrid.PlaceTile(new Vector2(ReefSize.X + 1, i), "spawner");
+           // SpawnerTileGrid.PlaceTile(new Vector2(ReefSize.X + 1, i), "spawner");
         }
 
         base.Load();

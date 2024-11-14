@@ -9,7 +9,7 @@ namespace Reefers;
 
 public class UserStats : Component
 {
-    public int SandDollars { get; set; } = 0;
+    public int SandDollars { get; set; } = 10;
 
     public UserStats() : base(false)
     {
